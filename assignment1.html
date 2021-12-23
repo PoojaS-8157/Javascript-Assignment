@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+         let candidateDetail=[
+             {"name":"Pooja"},
+             {"name":"Reeta"},
+             {"name":"Ronak"},
+             {"name":"Priyanka"},
+             {"name":"Sunny"},
+             {"name":"papita"},
+             {"name":"Ruby"}
+         ]
+        // map test
+        let candidate=candidateDetail.map(e=>{
+            e.marks= Math.floor(Math.random()*100);
+            return e;
+        })
+        console.log(candidate)
+
+        let selectedCandidate = candidate.filter(e=>{
+            if(e.marks>60){
+                return e;
+            }
+        });
+        console.log(selectedCandidate)
+    
+        let teamMembers=selectedCandidate.reduce((teamMembers,user)=>{
+            teamMembers.push(user);
+            return teamMembers;
+        },[]);
+        console.log(teamMembers)
+        </script>
+    </head>
+</html>

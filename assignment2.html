@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://www.w3schools.com/lib/w3.js"></script>
+    <script>
+         var objVal 
+         var tableVal
+        function getData() {
+            const URL = "https://jsonplaceholder.typicode.com/posts"
+            fetch(URL)
+                .then(res => res.json())
+                .then(data => {
+                    objVal = data;
+                    objVal = JSON.stringify(objVal);
+                    document.getElementById("display").innerHTML = objVal;
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
+        function displaydetailintable() {
+            const URL = "https://jsonplaceholder.typicode.com/users"
+            fetch(URL)
+                .then(res => res.json())
+                .then(data => {
+                    tableVal = data;
+                    var html = "<table border='1|1'>";
+                    html += "<th>" + "S.No" + "</th>";
+                    html += "<th>" + "Name" + "</th>";
+                    html += "<th>" + "Email" + "</th>";
+                    html += "<th>" + "Username" + "</th>";
+                    html += "<th>" + "Phone" + "</th>";
+                    html += "<th>" + "Website" + "</th>";
+                    for (var i = 0; i < 5; i++) {
+                        html += "<tr>";
+
+                        html += "</tr>";
+                        html += "<tr>";
+                        html += "<td>" + tableVal[i].id + "</td>";
+                        html += "<td>" + tableVal[i].name + "</td>";
+                        html += "<td>" + tableVal[i].email + "</td>";
+                        html += "<td>" + tableVal[i].username + "</td>";
+                        html += "<td>" + tableVal[i].phone + "</td>";
+                        html += "<td>" + tableVal[i].website + "</td>";
+
+                        html += "</tr>";
+
+                    }
+                    html += "</table>";
+                   $("#displayJSON").html(html);
+                })
+
+                .catch(err => {
+                    console.log(err)
+                })
+             }
+             function Reset(){
+                let parent = document.getElementById("display");
+                parent.innerHTML = "";
+                let child = document.getElementById("displayJSON");
+                child.innerHTML = "";
+             }
+    </script>
+</head>
+<div>
+    <div>
+        <button onclick="getData()" type="button" class="btn btn-primary">Display json</button>
+        <button type="button" onclick="displaydetailintable()" class="btn btn-secondary">Display USER Details</button>
+        <button type="button" onclick="Reset()" class="btn btn-info">Reset</button>
+    </div>
+</div>
+<div>
+    <div id="display">
+    </div>
+    <div class="table-sizing" id="displayJSON">
+
+    </div>
+</div>
+<!-- <p id="target">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio debitis labore similique voluptas at nostrum tenetur! Harum aperiam quaerat, atque, nulla nostrum quisquam suscipit facilis fugiat iste consectetur dolorem eaque.
+    </p>
+    <button onclick="update()"> Click Here</button> -->
+    <style>
+        .table-sizing{
+            display: flex;
+             margin: 31px  18px;
+            
+        }
+    </style>
+
+</html>
